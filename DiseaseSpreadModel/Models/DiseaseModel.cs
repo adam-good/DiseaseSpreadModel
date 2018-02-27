@@ -8,5 +8,19 @@ namespace DiseaseSpreadModel.Models
 {
     class DiseaseModel
     {
+        public string DiseaseName { get; private set; }
+        public float InfectionRate { get; private set; }
+        public float RecoveryRate { get; private set; }
+        public float AverageIncubationPeriod { get; private set; }
+        public float AverageInfectionPeriod { get; private set; }
+
+        public DiseaseModel(string diseaseName, float infectionRate, float recoveryRate, float averageIncubationPeriod, float averageInfectionPeriod)
+        {
+            DiseaseName = diseaseName;
+            InfectionRate = infectionRate;
+            RecoveryRate = recoveryRate;
+            AverageIncubationPeriod = averageIncubationPeriod;
+            AverageInfectionPeriod = averageInfectionPeriod;
+        }
     }
 }
