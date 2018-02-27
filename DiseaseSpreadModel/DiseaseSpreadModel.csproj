@@ -62,8 +62,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Enums\InfectionStateEnum.cs" />
+    <Compile Include="Enums\RunStateEnum.cs" />
     <Compile Include="Models\DiseaseModel.cs" />
     <Compile Include="Models\PersonModel.cs" />
+    <Compile Include="Models\PopulationSettings.cs" />
     <Compile Include="Models\SimulationSettings.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\PopulationViewModel.cs" />

@@ -12,9 +12,9 @@ namespace DiseaseSpreadModel.ViewModels
     {
         public ObservableCollection<PersonModel> Population { get; private set; }
 
-        private SimulationSettings settings;
+        private PopulationSettings settings;
 
-        public PopulationViewModel(SimulationSettings _settings)
+        public PopulationViewModel(PopulationSettings _settings)
         {
             Population = new ObservableCollection<PersonModel>();
             settings = _settings;

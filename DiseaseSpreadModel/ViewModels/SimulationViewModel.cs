@@ -10,11 +10,11 @@ namespace DiseaseSpreadModel.ViewModels
 {
     class SimulationViewModel : ViewModelBase
     {
-        private SimulationSettings settings;
-        public SimulationSettings Settings
+        private PopulationSettings populationSettings;
+        public PopulationSettings PopulationSettings
         {
-            get { return settings; }
-            set { settings = value; RaisePropertyChangedEvent("Settings"); }
+            get { return populationSettings; }
+            set { populationSettings = value; RaisePropertyChangedEvent("Settings"); }
         }
 
         private PopulationViewModel populationViewModel;
@@ -30,9 +30,9 @@ namespace DiseaseSpreadModel.ViewModels
 
         public SimulationViewModel()
         {
-            Settings = new SimulationSettings(100, 100, 5.0f, 1.0f, 0.04f);
+            PopulationSettings = new PopulationSettings(100, 5.0f, 1.0f, 0.04f);
 
-            PopulationViewModel = new PopulationViewModel(Settings);
+            PopulationViewModel = new PopulationViewModel(PopulationSettings);
             PopulationViewModel.InitializePopulation();
 
             RunCommand = new DelegateCommand(Run);
