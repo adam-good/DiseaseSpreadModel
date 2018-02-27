@@ -1,4 +1,5 @@
 ﻿using DiseaseSpreadModel.Commands;
+using DiseaseSpreadModel.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,19 @@ namespace DiseaseSpreadModel.ViewModels
 {
     class SimulationViewModel : ViewModelBase
     {
-        // Simulation Settings
+        private SimulationSettings settings;
+        public SimulationSettings Settings
+        {
+            get { return settings; }
+            set { settings = value; RaisePropertyChangedEvent("Settings"); }
+        }
+
+        private PopulationViewModel populationViewModel;
+        public PopulationViewModel PopulationViewModel
+        {
+            get { return populationViewModel; }
+            set { populationViewModel = value;  RaisePropertyChangedEvent("PopulationViewModel"); }
+        }
 
         public DelegateCommand RunCommand { get; private set; }
         public DelegateCommand ResetCommand { get; private set; }
@@ -17,6 +30,11 @@ namespace DiseaseSpreadModel.ViewModels
 
         public SimulationViewModel()
         {
+            Settings = new SimulationSettings(100, 100, 5.0f, 1.0f, 0.04f);
+
+            PopulationViewModel = new PopulationViewModel(Settings);
+            PopulationViewModel.InitializePopulation();
+
             RunCommand = new DelegateCommand(Run);
             ResetCommand = new DelegateCommand(Reset);
             PauseCommand = new DelegateCommand(Pause);

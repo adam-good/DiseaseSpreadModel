@@ -18,6 +18,9 @@ namespace DiseaseSpreadModel.ViewModels
         public MainWindowViewModel()
         {
             TempText = "THIS IS BOUND TO VIEW MODEL";
+
+            var testingSimulationViewModel = new SimulationViewModel();
+
         }
     }
 }
