@@ -11,11 +11,18 @@ namespace DiseaseSpreadModel.Models
     {
         public float ContactRate { get; private set; }
         public InfectionStateEnum InfectionState { get; private set; }
+        public DiseaseModel Disease { get; set; }
 
-        public PersonModel(float contactRate, InfectionStateEnum startingInfectionState)
+        public PersonModel(float contactRate, InfectionStateEnum startingInfectionState, DiseaseModel disease)
         {
             ContactRate = contactRate;
             InfectionState = startingInfectionState;
+            Disease = disease;
+        }
+
+        public void Update()
+        {
+
         }
     }
 }

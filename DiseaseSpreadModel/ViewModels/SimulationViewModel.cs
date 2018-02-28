@@ -14,8 +14,16 @@ namespace DiseaseSpreadModel.ViewModels
         public PopulationSettings PopulationSettings
         {
             get { return populationSettings; }
-            set { populationSettings = value; RaisePropertyChangedEvent("Settings"); }
+            set { populationSettings = value; RaisePropertyChangedEvent("PopulationSettings"); }
         }
+
+        private DiseaseModel disease;
+        public DiseaseModel Disease
+        {
+            get { return disease; }
+            set { disease = value; RaisePropertyChangedEvent("Disease"); }
+        }
+
 
         private PopulationViewModel populationViewModel;
         public PopulationViewModel PopulationViewModel
@@ -28,11 +36,14 @@ namespace DiseaseSpreadModel.ViewModels
         public DelegateCommand ResetCommand { get; private set; }
         public DelegateCommand PauseCommand { get; private set; }
 
+        public Enums.RunStateEnum RunState { get; set; }
+
         public SimulationViewModel()
         {
             PopulationSettings = new PopulationSettings(100, 5.0f, 1.0f, 0.04f);
-
-            PopulationViewModel = new PopulationViewModel(PopulationSettings);
+            Disease = new DiseaseModel("AIDS", 0.999f, 0.1f, 3.0f, 3.0f); //TODO: fix this, this is literally aids
+            
+            PopulationViewModel = new PopulationViewModel(PopulationSettings, disease);
             PopulationViewModel.InitializePopulation();
 
             RunCommand = new DelegateCommand(Run);
@@ -42,17 +53,36 @@ namespace DiseaseSpreadModel.ViewModels
 
         public void Run()
         {
-            throw new NotImplementedException();
+            while (RunState != Enums.RunStateEnum.Stop)
+            {
+                if (RunState != Enums.RunStateEnum.Pause)
+                {
+                    PopulationViewModel.UpdatePopulation();
+                    //TODO: may need to update graphics or something idk.
+                }
+            }
         }
 
         public void Reset()
         {
-            throw new NotImplementedException();
+            RunState = Enums.RunStateEnum.Stop;
+            //TODO: Prompt User to change Simulation and Population Settings
+
+            PopulationViewModel = new PopulationViewModel(PopulationSettings, Disease);
+            PopulationViewModel.InitializePopulation();
+
         }
 
         public void Pause()
         {
-            throw new NotImplementedException();
+            if ( RunState == Enums.RunStateEnum.Run)
+            {
+                RunState = Enums.RunStateEnum.Pause;
+            }
+            else
+            {
+                RunState = Enums.RunStateEnum.Run;
+            }
         }
     }
 }

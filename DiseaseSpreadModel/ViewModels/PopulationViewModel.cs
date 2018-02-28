@@ -13,11 +13,13 @@ namespace DiseaseSpreadModel.ViewModels
         public ObservableCollection<PersonModel> Population { get; private set; }
 
         private PopulationSettings settings;
+        private DiseaseModel disease;
 
-        public PopulationViewModel(PopulationSettings _settings)
+        public PopulationViewModel(PopulationSettings _settings, DiseaseModel _disease)
         {
             Population = new ObservableCollection<PersonModel>();
             settings = _settings;
+            disease = _disease;
         }
 
         public void InitializePopulation()
@@ -28,26 +30,28 @@ namespace DiseaseSpreadModel.ViewModels
             for (int i = 0; i < settings.PopulationSize; i++)
             {
                 float contactRate = (float)contactRateGeneration.Sample();
-                Enums.InfectionStateEnum initialStartingState;
+                Enums.InfectionStateEnum initialInfectionState;
 
-                double chanceOfInfection = randomGenerator.NextDouble();
-                if (chanceOfInfection < settings.InitialInfectionPercentage)
+                if (i < settings.InitialInfectionAmount)
                 {
-                    initialStartingState = Enums.InfectionStateEnum.Infected;
+                    initialInfectionState = Enums.InfectionStateEnum.Infected;
                 }
                 else
                 {
-                    initialStartingState = Enums.InfectionStateEnum.Healthy;
+                    initialInfectionState = Enums.InfectionStateEnum.Healthy;
                 }
 
-                PersonModel newPersonModel = new PersonModel(contactRate, initialStartingState);
+                PersonModel newPersonModel = new PersonModel(contactRate, initialInfectionState, disease);
                 Population.Add(newPersonModel);
             }
         }
 
         public void UpdatePopulation()
         {
-            throw new NotImplementedException();
+            Parallel.ForEach(Population, (person) =>
+             {
+                 person.Update();
+             });
         }
     }
 }
