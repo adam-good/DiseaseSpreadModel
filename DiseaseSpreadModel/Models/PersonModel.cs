@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DiseaseSpreadModel.Models
 {
-    class PersonModel
+   public class PersonModel
     {
         public float ContactRate { get; private set; }
         public InfectionStateEnum InfectionState { get; private set; }

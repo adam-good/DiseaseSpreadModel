@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DiseaseSpreadModel.ViewModels
 {
-    class SimulationViewModel : ViewModelBase
+    public class SimulationViewModel : ViewModelBase
     {
         private PopulationSettings populationSettings;
         public PopulationSettings PopulationSettings

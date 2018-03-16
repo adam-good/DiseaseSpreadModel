@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DiseaseSpreadModel.Models
 {
-    class PopulationSettings
+    public class PopulationSettings
     {
         public int PopulationSize { get; private set; }
         public float ContactRateMean { get; private set; }

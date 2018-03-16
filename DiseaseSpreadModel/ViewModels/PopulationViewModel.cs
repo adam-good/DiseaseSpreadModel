@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 
 namespace DiseaseSpreadModel.ViewModels
 {
-    class PopulationViewModel : ViewModelBase
+    public class PopulationViewModel : ViewModelBase
     {
         public ObservableCollection<PersonModel> Population { get; private set; }
 
