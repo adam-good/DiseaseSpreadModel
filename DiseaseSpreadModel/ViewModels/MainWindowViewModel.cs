@@ -15,12 +15,16 @@ namespace DiseaseSpreadModel.ViewModels
             set { tempText = value; RaisePropertyChangedEvent("TempText"); }
         }
 
+        private SimulationViewModel simulationViewModel;
+        public SimulationViewModel SimulationViewModel
+        {
+            get { return simulationViewModel; }
+            set { simulationViewModel = value; RaisePropertyChangedEvent("SimulationViewModel"); }
+        }
+
         public MainWindowViewModel()
         {
-            TempText = "THIS IS BOUND TO VIEW MODEL";
-
-            var testingSimulationViewModel = new SimulationViewModel();
-
+            SimulationViewModel = new SimulationViewModel();
         }
     }
 }

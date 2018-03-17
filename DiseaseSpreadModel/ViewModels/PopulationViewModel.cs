@@ -13,6 +13,11 @@ namespace DiseaseSpreadModel.ViewModels
         public ObservableCollection<PersonModel> Population { get; private set; }
 
         private PopulationSettings settings;
+        public PopulationSettings Settings
+        {
+            get { return settings; }
+            set { settings = value; RaisePropertyChangedEvent("Settings"); }
+        }
         private DiseaseModel disease;
 
         public PopulationViewModel(PopulationSettings _settings, DiseaseModel _disease)
@@ -41,7 +46,7 @@ namespace DiseaseSpreadModel.ViewModels
                     initialInfectionState = Enums.InfectionStateEnum.Healthy;
                 }
 
-                PersonModel newPersonModel = new PersonModel(contactRate, initialInfectionState, disease);
+                PersonModel newPersonModel = new PersonModel(i, contactRate, initialInfectionState, disease);
                 Population.Add(newPersonModel);
             }
         }

@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="DiseaseSpreadModel.Views.SimulationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DiseaseSpreadModel.Views"
+             xmlns:views="clr-namespace:DiseaseSpreadModel.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="3">
+            <TextBlock Text="Simulation Controls"></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Run" Command="{Binding RunCommand}" Margin="4,4,4,4"></Button>
+                <Button Content="Pause" Command="{Binding PauseCommand}" Margin="4,4,4,4"></Button>
+                <Button Content="Reset" Command="{Binding ResetCommand}" Margin="4,4,4,4"></Button>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <TextBlock Text="Name: "></TextBlock>
+            <TextBlock Text="{Binding Disease.DiseaseName}"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="Infection Rate: "></TextBlock>
+            <TextBlock Text="{Binding Disease.InfectionRate}"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <TextBlock Text="Recovery Rate: "></TextBlock>
+            <TextBlock Text="{Binding Disease.InfectionRate}"></TextBlock>
+        </StackPanel>
+
+        <views:PopulationView Grid.Row="2" Grid.ColumnSpan="3" DataContext="{Binding PopulationViewModel}"></views:PopulationView>
+        
+    </Grid>
+</UserControl>

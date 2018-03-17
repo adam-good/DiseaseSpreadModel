@@ -4,9 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiseaseSpreadModel"
+        xmlns:views="clr-namespace:DiseaseSpreadModel.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <TextBlock Text="{Binding TempText}"></TextBlock>
-    </Grid>
+    <ScrollViewer  ScrollViewer.VerticalScrollBarVisibility="Visible">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <views:SimulationView Grid.Row="1" DataContext="{Binding SimulationViewModel}"></views:SimulationView>
+        </Grid>
+    </ScrollViewer>
 </Window>
