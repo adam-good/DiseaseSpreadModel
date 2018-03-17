@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace DiseaseSpreadModel.ViewModels
 {
@@ -38,6 +39,8 @@ namespace DiseaseSpreadModel.ViewModels
 
         public Enums.RunStateEnum RunState { get; set; }
 
+        private DispatcherTimer SimulationTimer;
+
         public SimulationViewModel()
         {
             PopulationSettings = new PopulationSettings(100, 5.0f, 1.0f, 0.04f);
@@ -49,22 +52,28 @@ namespace DiseaseSpreadModel.ViewModels
             RunCommand = new DelegateCommand(Run);
             ResetCommand = new DelegateCommand(Reset);
             PauseCommand = new DelegateCommand(Pause);
+
+            SimulationTimer = new DispatcherTimer();
+            SimulationTimer.Interval = new TimeSpan(0, 0, 1);
+            SimulationTimer.Tick += new EventHandler(Simulation_Tick);
+
+            RunState = Enums.RunStateEnum.Stop;
         }
 
         public void Run()
         {
-            while (RunState != Enums.RunStateEnum.Stop)
-            {
-                if (RunState != Enums.RunStateEnum.Pause)
-                {
-                    PopulationViewModel.UpdatePopulation();
-                    //TODO: may need to update graphics or something idk.
-                }
-            }
+            SimulationTimer.Start();
+            RunState = Enums.RunStateEnum.Run;
+        }
+
+        private void Simulation_Tick(object sender, EventArgs e)
+        {
+            PopulationViewModel.UpdatePopulation();
         }
 
         public void Reset()
         {
+            SimulationTimer.Stop();
             RunState = Enums.RunStateEnum.Stop;
             //TODO: Prompt User to change Simulation and Population Settings
 
@@ -77,10 +86,12 @@ namespace DiseaseSpreadModel.ViewModels
         {
             if ( RunState == Enums.RunStateEnum.Run)
             {
+                SimulationTimer.Stop();
                 RunState = Enums.RunStateEnum.Pause;
             }
             else
             {
+                SimulationTimer.Start();
                 RunState = Enums.RunStateEnum.Run;
             }
         }
