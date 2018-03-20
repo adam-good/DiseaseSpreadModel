@@ -35,8 +35,8 @@
             <TextBlock Text="{Binding Disease.InfectionRate}"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="2">
-            <TextBlock Text="Recovery Rate: "></TextBlock>
-            <TextBlock Text="{Binding Disease.InfectionRate}"></TextBlock>
+            <TextBlock Text="Infection Period: "></TextBlock>
+            <TextBlock Text="{Binding Disease.AverageInfectionPeriod}"></TextBlock>
         </StackPanel>
 
         <views:PopulationView Grid.Row="2" Grid.ColumnSpan="3" DataContext="{Binding PopulationViewModel}"></views:PopulationView>

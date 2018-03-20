@@ -33,6 +33,13 @@ namespace DiseaseSpreadModel.ViewModels
             set { populationViewModel = value;  RaisePropertyChangedEvent("PopulationViewModel"); }
         }
 
+        private int simulationTime;
+        public int SimulationTime
+        {
+            get { return simulationTime; }
+            set { simulationTime = value; RaisePropertyChangedEvent("SimulationTime"); }
+        }
+
         public DelegateCommand RunCommand { get; private set; }
         public DelegateCommand ResetCommand { get; private set; }
         public DelegateCommand PauseCommand { get; private set; }
@@ -44,7 +51,7 @@ namespace DiseaseSpreadModel.ViewModels
         public SimulationViewModel()
         {
             PopulationSettings = new PopulationSettings(100, 5.0f, 1.0f, 0.04f);
-            Disease = new DiseaseModel("AIDS", 0.999f, 0.1f, 3.0f, 3.0f); //TODO: fix this, this is literally aids
+            Disease = new DiseaseModel("AIDS", 0.5f, 0.1f, 3.0f, 2.0f); //TODO: fix this, this is literally aids
             
             PopulationViewModel = new PopulationViewModel(PopulationSettings, disease);
             PopulationViewModel.InitializePopulation();
@@ -57,6 +64,7 @@ namespace DiseaseSpreadModel.ViewModels
             SimulationTimer.Interval = new TimeSpan(0, 0, 1);
             SimulationTimer.Tick += new EventHandler(Simulation_Tick);
 
+            SimulationTime = 0;
             RunState = Enums.RunStateEnum.Stop;
         }
 
@@ -69,6 +77,7 @@ namespace DiseaseSpreadModel.ViewModels
         private void Simulation_Tick(object sender, EventArgs e)
         {
             PopulationViewModel.UpdatePopulation();
+            SimulationTime++;
         }
 
         public void Reset()
@@ -79,7 +88,7 @@ namespace DiseaseSpreadModel.ViewModels
 
             PopulationViewModel = new PopulationViewModel(PopulationSettings, Disease);
             PopulationViewModel.InitializePopulation();
-
+            SimulationTime = 0;
         }
 
         public void Pause()

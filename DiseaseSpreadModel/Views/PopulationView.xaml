@@ -4,8 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DiseaseSpreadModel.Views"
+             xmlns:converter="clr-namespace:DiseaseSpreadModel.Converter"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converter:InfectedStateColorConverter x:Key="colorConverter"></converter:InfectedStateColorConverter>
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -24,7 +29,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Margin="1,1,1,1" Background="#FFE9FFF2">
+                        <StackPanel Margin="1,1,1,1" Width="55px" Background="{Binding InfectionState, Converter={StaticResource colorConverter}}">
                             <TextBlock Text="{Binding PersonId}"></TextBlock>
                             <TextBlock Text="{Binding InfectionState}"></TextBlock>
                         </StackPanel>
