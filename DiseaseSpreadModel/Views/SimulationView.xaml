@@ -12,6 +12,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -38,8 +39,9 @@
             <TextBlock Text="Infection Period: "></TextBlock>
             <TextBlock Text="{Binding Disease.AverageInfectionPeriod}"></TextBlock>
         </StackPanel>
-
-        <views:PopulationView Grid.Row="2" Grid.ColumnSpan="3" DataContext="{Binding PopulationViewModel}"></views:PopulationView>
-        
+        <ScrollViewer Grid.Row="2" Grid.ColumnSpan="3">
+            <views:PopulationView  DataContext="{Binding PopulationViewModel}"></views:PopulationView>
+        </ScrollViewer>
+        <views:StatisticsView Grid.Row="0" Grid.RowSpan="3" Grid.Column="3" DataContext="{Binding StatisticsViewModel}"></views:StatisticsView>
     </Grid>
 </UserControl>

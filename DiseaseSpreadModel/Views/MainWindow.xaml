@@ -7,13 +7,11 @@
         xmlns:views="clr-namespace:DiseaseSpreadModel.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <ScrollViewer  ScrollViewer.VerticalScrollBarVisibility="Visible">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <views:SimulationView Grid.Row="1" DataContext="{Binding SimulationViewModel}"></views:SimulationView>
-        </Grid>
-    </ScrollViewer>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <views:SimulationView Grid.Row="1" DataContext="{Binding SimulationViewModel}"></views:SimulationView>
+    </Grid>
 </Window>

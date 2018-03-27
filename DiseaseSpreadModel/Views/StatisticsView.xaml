@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="DiseaseSpreadModel.Views.StatisticsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DiseaseSpreadModel.Views"
+             xmlns:chart="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Margin="5,5,5,5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <TextBlock Text="Healthy"></TextBlock>
+            <TextBlock Text="{Binding CurrentHealthy}"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <TextBlock Text="Infected"></TextBlock>
+            <TextBlock Text="{Binding CurrentInfected}"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="2">
+            <TextBlock Text="Recovered"></TextBlock>
+            <TextBlock Text="{Binding CurrentRecovered}"></TextBlock>
+        </StackPanel>
+        <chart:Chart Title="States Over Time" Grid.Row="1" Grid.ColumnSpan="3">
+            <chart:LineSeries Name="Infected"
+                              Title="Infected"
+                              DependentValuePath="Value"
+                              IndependentValuePath="Key"
+                              ItemsSource="{Binding Infected}"/>
+            <chart:LineSeries Name="Recovered"
+                              Title="Recovered"
+                              DependentValuePath="Value"
+                              IndependentValuePath="Key"
+                              ItemsSource="{Binding Recovered}"/>
+            <chart:LineSeries Name="Healthy"
+                              Title="Healthy"
+                              DependentValuePath="Value"
+                              IndependentValuePath="Key"
+                              ItemsSource="{Binding Healthy}"/>
+        </chart:Chart>
+    </Grid>
+</UserControl>

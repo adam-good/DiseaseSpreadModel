@@ -40,6 +40,13 @@ namespace DiseaseSpreadModel.ViewModels
             set { simulationTime = value; RaisePropertyChangedEvent("SimulationTime"); }
         }
 
+        private StatisticsViewModel statisticsViewModel;
+        public StatisticsViewModel StatisticsViewModel
+        {
+            get { return statisticsViewModel; }
+            set { statisticsViewModel = value;  RaisePropertyChangedEvent("StatisticsViewModel"); }
+        }
+
         public DelegateCommand RunCommand { get; private set; }
         public DelegateCommand ResetCommand { get; private set; }
         public DelegateCommand PauseCommand { get; private set; }
@@ -50,8 +57,8 @@ namespace DiseaseSpreadModel.ViewModels
 
         public SimulationViewModel()
         {
-            PopulationSettings = new PopulationSettings(100, 5.0f, 1.0f, 0.04f);
-            Disease = new DiseaseModel("AIDS", 0.5f, 0.1f, 3.0f, 2.0f); //TODO: fix this, this is literally aids
+            PopulationSettings = new PopulationSettings(1000, 5.0f, 1.0f, 0.04f);
+            Disease = new DiseaseModel("AIDS", 0.1f, 0.1f, 3.0f, 5.0f); //TODO: fix this, this is literally aids
             
             PopulationViewModel = new PopulationViewModel(PopulationSettings, disease);
             PopulationViewModel.InitializePopulation();
@@ -61,11 +68,14 @@ namespace DiseaseSpreadModel.ViewModels
             PauseCommand = new DelegateCommand(Pause);
 
             SimulationTimer = new DispatcherTimer();
-            SimulationTimer.Interval = new TimeSpan(0, 0, 1);
+            SimulationTimer.Interval = new TimeSpan(0, 0, 0, 0, 50);
             SimulationTimer.Tick += new EventHandler(Simulation_Tick);
 
             SimulationTime = 0;
             RunState = Enums.RunStateEnum.Stop;
+
+            StatisticsViewModel = new StatisticsViewModel();
+            StatisticsViewModel.AddTimestepStatistics(SimulationTime, PopulationViewModel);
         }
 
         public void Run()
@@ -78,6 +88,8 @@ namespace DiseaseSpreadModel.ViewModels
         {
             PopulationViewModel.UpdatePopulation();
             SimulationTime++;
+
+            StatisticsViewModel.AddTimestepStatistics(SimulationTime, PopulationViewModel);
         }
 
         public void Reset()
@@ -86,9 +98,13 @@ namespace DiseaseSpreadModel.ViewModels
             RunState = Enums.RunStateEnum.Stop;
             //TODO: Prompt User to change Simulation and Population Settings
 
+            SimulationTime = 0;
+
             PopulationViewModel = new PopulationViewModel(PopulationSettings, Disease);
             PopulationViewModel.InitializePopulation();
-            SimulationTime = 0;
+
+            StatisticsViewModel = new StatisticsViewModel();
+            StatisticsViewModel.AddTimestepStatistics(SimulationTime, PopulationViewModel);
         }
 
         public void Pause()
