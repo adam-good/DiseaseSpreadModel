@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Threading;
+using System.Diagnostics;
 
 namespace DiseaseSpreadModel.ViewModels
 {
@@ -54,11 +55,12 @@ namespace DiseaseSpreadModel.ViewModels
         public Enums.RunStateEnum RunState { get; set; }
 
         private DispatcherTimer SimulationTimer;
+        private Stopwatch stopWatch;
 
         public SimulationViewModel()
         {
             PopulationSettings = new PopulationSettings(1000, 5.0f, 1.0f, 0.04f);
-            Disease = new DiseaseModel("AIDS", 0.1f, 0.1f, 3.0f, 5.0f); //TODO: fix this, this is literally aids
+            Disease = new DiseaseModel("AIDS", 0.25f, 0.1f, 3.0f, 5.0f); //TODO: fix this, this is literally aids
             
             PopulationViewModel = new PopulationViewModel(PopulationSettings, disease);
             PopulationViewModel.InitializePopulation();
@@ -68,9 +70,10 @@ namespace DiseaseSpreadModel.ViewModels
             PauseCommand = new DelegateCommand(Pause);
 
             SimulationTimer = new DispatcherTimer();
-            SimulationTimer.Interval = new TimeSpan(0, 0, 0, 0, 50);
+            SimulationTimer.Interval = new TimeSpan(0, 0, 0, 0, 20);
             SimulationTimer.Tick += new EventHandler(Simulation_Tick);
 
+            stopWatch = new Stopwatch();
             SimulationTime = 0;
             RunState = Enums.RunStateEnum.Stop;
 
@@ -86,8 +89,12 @@ namespace DiseaseSpreadModel.ViewModels
 
         private void Simulation_Tick(object sender, EventArgs e)
         {
+            stopWatch.Start();
             PopulationViewModel.UpdatePopulation();
+            stopWatch.Stop();
+
             SimulationTime++;
+            stopWatch.Reset();
 
             StatisticsViewModel.AddTimestepStatistics(SimulationTime, PopulationViewModel);
         }

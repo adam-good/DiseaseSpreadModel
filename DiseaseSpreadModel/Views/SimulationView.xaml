@@ -40,7 +40,7 @@
             <TextBlock Text="{Binding Disease.AverageInfectionPeriod}"></TextBlock>
         </StackPanel>
         <ScrollViewer Grid.Row="2" Grid.ColumnSpan="3">
-            <views:PopulationView  DataContext="{Binding PopulationViewModel}"></views:PopulationView>
+            <!--<views:PopulationView  DataContext="{Binding PopulationViewModel}"></views:PopulationView>-->
         </ScrollViewer>
         <views:StatisticsView Grid.Row="0" Grid.RowSpan="3" Grid.Column="3" DataContext="{Binding StatisticsViewModel}"></views:StatisticsView>
     </Grid>
