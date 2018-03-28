@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DiseaseSpreadModel.Commands;
+using DiseaseSpreadModel.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,13 +19,24 @@ using System.Windows.Shapes;
 namespace DiseaseSpreadModel.Views
 {
     /// <summary>
-    /// Interaction logic for SimulationView.xaml
+    /// Interaction logic for Settings.xaml
     /// </summary>
-    public partial class SimulationView
+    public partial class SettingsView : Window
     {
-        public SimulationView()
+
+        public SettingsView(SettingsViewModel settingsViewModel)
         {
             InitializeComponent();
+            this.DataContext = settingsViewModel;
+            settingsViewModel.OnSave += SettingsViewModel_OnSave;
         }
+
+        private void SettingsViewModel_OnSave(object sender, EventArgs e)
+        {
+            this.DialogResult = true;
+            this.Close();
+        }
+
+
     }
 }

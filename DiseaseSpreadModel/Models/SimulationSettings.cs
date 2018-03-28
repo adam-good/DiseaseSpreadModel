@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace DiseaseSpreadModel.Models
 {
-    class SimulationSettings
+    public class SimulationSettings
     {
-        public int MaximumStepCount { get; private set; }
+        public int CycleSpeed { get; set; }
         //TODO: add appropriate properties, framerate, etc..
-        public SimulationSettings(int maximumStepCount)
+        public SimulationSettings(int cycleSpeed)
         {
-            MaximumStepCount = maximumStepCount;
+            CycleSpeed = cycleSpeed;
         }
     }
 }

@@ -45,7 +45,7 @@ namespace DiseaseSpreadModel.ViewModels
                 }
 
                 Enums.InfectionStateEnum initialInfectionState;
-                if (personId < settings.InitialInfectionAmount)
+                if (personId == 0 )
                 {
                     initialInfectionState = Enums.InfectionStateEnum.Infected;
                 }

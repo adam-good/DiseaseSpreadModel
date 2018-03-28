@@ -18,7 +18,7 @@ namespace DiseaseSpreadModel.Views
     /// <summary>
     /// Interaction logic for StatisticsView.xaml
     /// </summary>
-    public partial class StatisticsView : UserControl
+    public partial class StatisticsView 
     {
         public StatisticsView()
         {

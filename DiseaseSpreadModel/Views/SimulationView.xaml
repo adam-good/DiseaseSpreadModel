@@ -22,8 +22,9 @@
         <StackPanel Grid.Row="0" Grid.ColumnSpan="3">
             <TextBlock Text="Simulation Controls"></TextBlock>
             <StackPanel Orientation="Horizontal">
+                <Button Content="Settings" Command="{Binding SettingsCommand}" Margin="4,4,4,4"/>
                 <Button Content="Run" Command="{Binding RunCommand}" Margin="4,4,4,4"></Button>
-                <Button Content="Pause" Command="{Binding PauseCommand}" Margin="4,4,4,4"></Button>
+                <Button Content="Pause/Continue" Command="{Binding PauseCommand}" Margin="4,4,4,4"></Button>
                 <Button Content="Reset" Command="{Binding ResetCommand}" Margin="4,4,4,4"></Button>
             </StackPanel>
         </StackPanel>
