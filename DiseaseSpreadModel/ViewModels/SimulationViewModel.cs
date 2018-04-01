@@ -78,7 +78,6 @@ namespace DiseaseSpreadModel.ViewModels
             ResetCommand = new DelegateCommand(Reset);
             PauseCommand = new DelegateCommand(Pause);
 
-
             SimulationTimer = new DispatcherTimer();
             SimulationTimer.Interval = new TimeSpan(0, 0, 0, 0, SimulationSettings.CycleSpeed);
             SimulationTimer.Tick += new EventHandler(Simulation_Tick);
@@ -129,6 +128,12 @@ namespace DiseaseSpreadModel.ViewModels
             stopWatch.Reset();
 
             StatisticsViewModel.AddTimestepStatistics(SimulationTime, PopulationViewModel);
+            
+            if(StatisticsViewModel.CurrentInfected == 0)
+            {
+                SimulationTimer.Stop();
+                RunState = Enums.RunStateEnum.Stop;
+            }
         }
 
         public void Reset()
