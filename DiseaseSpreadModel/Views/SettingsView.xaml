@@ -12,9 +12,10 @@
 
     <Grid Background="#dddddd">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="164*"/>
+            <ColumnDefinition Width="164*"/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="163*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -26,7 +27,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" Grid.Column="1" Margin="36,0">
             <TextBlock Text="SETTINGS" FontWeight="Bold" FontSize="20"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
@@ -74,7 +75,7 @@
         </StackPanel>
 
 
-        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical">
+        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical" Grid.ColumnSpan="2">
             <Label Content="Simulation Settings" FontWeight="Bold"></Label>
             <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal">
                 <Label Content="Simulation Time Step(ms)"></Label>
@@ -84,15 +85,21 @@
 
             <StackPanel Grid.Row="6" Grid.Column="2" Orientation="Vertical">
                 <Label Content="Days Off"></Label>
-                <ListView ItemsSource="{Binding SimulationSettings.DaysOffList, UpdateSourceTrigger=PropertyChanged}">
+                <ListView ItemsSource="{Binding SimulationSettings.DaysOffList, UpdateSourceTrigger=PropertyChanged}" >
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Focusable" Value="False" />
+                            <Setter Property="Margin" Value="0,0,0,0"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <StackPanel Orientation="Vertical"></StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="Auto"></StackPanel>
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
                                 <Label Content="{Binding Key}"></Label>
                                 <CheckBox IsChecked="{Binding Value}" VerticalAlignment="Center"></CheckBox>
                             </StackPanel>
@@ -104,8 +111,8 @@
         </StackPanel>
 
 
-        
-        <StackPanel Grid.Row="7" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5,5,5,5">
+
+        <StackPanel Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Center" Margin="68,5" Grid.Column="1">
             <Button Content="Save" Command="{Binding SaveCommand}"></Button>
         </StackPanel>
     </Grid>

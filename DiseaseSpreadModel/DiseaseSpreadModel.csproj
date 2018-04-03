@@ -95,7 +95,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converter\InfectedStateColorConverter.cs" />
-    <Compile Include="Enums\DayOfWeekEnum.cs" />
+    <Compile Include="Enums\WeekDayEnum.cs" />
     <Compile Include="Enums\InfectionStateEnum.cs" />
     <Compile Include="Enums\RunStateEnum.cs" />
     <Compile Include="Models\DaysOffKeyValuePair.cs" />

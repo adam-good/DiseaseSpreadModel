@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DiseaseSpreadModel.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,10 @@ namespace DiseaseSpreadModel.Models
 {
     public class DaysOffKeyValuePair
     {
-        public DayOfWeek Key { get; set; }
+        public WeekDays Key { get; set; }
         public bool Value { get; set; }
 
-        public DaysOffKeyValuePair(DayOfWeek key, bool value)
+        public DaysOffKeyValuePair(WeekDays key, bool value)
         {
             Key = key;
             Value = value;
