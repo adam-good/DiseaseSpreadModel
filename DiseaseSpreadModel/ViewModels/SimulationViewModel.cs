@@ -9,6 +9,8 @@ using System.Windows.Threading;
 using System.Diagnostics;
 using DiseaseSpreadModel.Views;
 using System.Collections.ObjectModel;
+using Microsoft.Win32;
+using System.IO;
 
 namespace DiseaseSpreadModel.ViewModels
 {
@@ -67,6 +69,7 @@ namespace DiseaseSpreadModel.ViewModels
         public DelegateCommand RunCommand { get; private set; }
         public DelegateCommand ResetCommand { get; private set; }
         public DelegateCommand PauseCommand { get; private set; }
+        public DelegateCommand ExportCommand { get; private set; }
 
         public Enums.RunStateEnum RunState { get; set; }
 
@@ -97,6 +100,7 @@ namespace DiseaseSpreadModel.ViewModels
             RunCommand = new DelegateCommand(Run);
             ResetCommand = new DelegateCommand(Reset);
             PauseCommand = new DelegateCommand(Pause);
+            ExportCommand = new DelegateCommand(Export);
 
             SimulationTimer = new DispatcherTimer();
             SimulationTimer.Interval = new TimeSpan(0, 0, 0, 0, SimulationSettings.CycleSpeed);
@@ -189,6 +193,28 @@ namespace DiseaseSpreadModel.ViewModels
             {
                 SimulationTimer.Start();
                 RunState = Enums.RunStateEnum.Run;
+            }
+        }
+
+        public void Export()
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.DefaultExt = "csv";
+            bool? result = saveFileDialog.ShowDialog();
+            if (result != null && result.Value == true)
+            {
+                using (TextWriter stream = new StreamWriter(saveFileDialog.FileName))
+                {
+                    stream.WriteLine("Simulation Time, Healthy, Infected, Recovered");
+                    foreach (var key in statisticsViewModel.Keys)
+                    {
+                        int healthy = statisticsViewModel.Healthy.First(w => w.Key == key).Value;
+                        int infected = statisticsViewModel.Infected.First(w => w.Key == key).Value;
+                        int recovered = statisticsViewModel.Recovered.First(w => w.Key == key).Value;
+
+                        stream.WriteLine("{0},{1},{2},{3}", key, healthy, infected, recovered);
+                    }
+                }
             }
         }
     }

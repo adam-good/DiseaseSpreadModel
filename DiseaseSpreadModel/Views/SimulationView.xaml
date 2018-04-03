@@ -25,6 +25,7 @@
                 <Button Content="Run" Command="{Binding RunCommand}" Margin="4,4,4,4"></Button>
                 <Button Content="Pause/Continue" Command="{Binding PauseCommand}" Margin="4,4,4,4"></Button>
                 <Button Content="Reset" Command="{Binding ResetCommand}" Margin="4,4,4,4"></Button>
+                <Button Content="Export" Command="{Binding ExportCommand}" Margin="4,4,4,4"></Button>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Background="#c6c6c6" Orientation="Horizontal" HorizontalAlignment="Center"  Margin="0,2,0,2" >

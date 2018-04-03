@@ -34,11 +34,15 @@ namespace DiseaseSpreadModel.ViewModels
             set { currentRecovered = value; RaisePropertyChangedEvent("CurrentRecovered"); }
         }
 
+        public List<int> Keys { get; private set; }
+
         public StatisticsViewModel()
         {
             Infected = new ObservableCollection<KeyValuePair<int, int>>();
             Healthy = new ObservableCollection<KeyValuePair<int, int>>();
             Recovered = new ObservableCollection<KeyValuePair<int, int>>();
+
+            Keys = new List<int>();
         }
         
         public void AddTimestepStatistics(int simulationTime, PopulationViewModel populationViewModel)
@@ -54,6 +58,8 @@ namespace DiseaseSpreadModel.ViewModels
             int recoveredCount = new List<PersonModel>(populationViewModel.Population).Count(c => c.InfectionState == InfectionStateEnum.Recovered);
             Recovered.Add(new KeyValuePair<int, int>(simulationTime, recoveredCount));
             CurrentRecovered = recoveredCount;
+
+            Keys.Add(simulationTime);
         }
     }
 }
