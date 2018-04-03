@@ -12,10 +12,9 @@
 
     <Grid Background="#dddddd">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="164*"/>
-            <ColumnDefinition Width="164*"/>
+            <ColumnDefinition />
+            <ColumnDefinition />
             <ColumnDefinition/>
-            <ColumnDefinition Width="163*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

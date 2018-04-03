@@ -7,6 +7,19 @@
              xmlns:chart="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style x:Key="InfectedDataPointStyle" TargetType="{x:Type chart:LineDataPoint}">
+                <Setter Property="Background" Value="Red"/>
+        </Style>
+        <Style x:Key="RecoveredDataPointStyle" TargetType="{x:Type chart:LineDataPoint}">
+            <Setter Property="Background" Value="Blue"/>
+        </Style>
+        <Style x:Key="HealthyDataPointStyle" TargetType="{x:Type chart:LineDataPoint}">
+            <Setter Property="Background" Value="Green"/>
+        </Style>
+    </UserControl.Resources>
+    
+    
     <Grid Margin="5,0,5,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -38,21 +51,26 @@
                 <chart:LinearAxis Orientation="Y" Minimum="0" Title="Number of People" Margin="0,0,10,0" />
                 <chart:LinearAxis Orientation="X" Minimum="0" Title="Days" Margin="0,0,10,0" />
             </chart:Chart.Axes>
+
             
+
             <chart:LineSeries Name="Infected"
                               Title="Infected"
                               DependentValuePath="Value"
                               IndependentValuePath="Key"
+                              DataPointStyle="{StaticResource InfectedDataPointStyle}"
                               ItemsSource="{Binding Infected}"/>
             <chart:LineSeries Name="Recovered"
                               Title="Recovered"
                               DependentValuePath="Value"
                               IndependentValuePath="Key"
+                              DataPointStyle="{StaticResource RecoveredDataPointStyle}"
                               ItemsSource="{Binding Recovered}"/>
             <chart:LineSeries Name="Healthy"
                               Title="Healthy"
                               DependentValuePath="Value"
                               IndependentValuePath="Key"
+                              DataPointStyle="{StaticResource HealthyDataPointStyle}"
                               ItemsSource="{Binding Healthy}"/>
         </chart:Chart>
     </Grid>
