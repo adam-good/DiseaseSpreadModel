@@ -7,7 +7,7 @@
              xmlns:chart="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Margin="5,5,5,5">
+    <Grid Margin="5,0,5,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition />
@@ -17,18 +17,21 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0">
-            <TextBlock Text="Healthy"></TextBlock>
-            <TextBlock Text="{Binding CurrentHealthy}"></TextBlock>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="3" Background="#c6c6c6" Orientation="Horizontal" Height="auto" HorizontalAlignment="Center">
+            <StackPanel Grid.Column="0" Margin="5,5,5,5" Orientation="Horizontal">
+                <TextBlock Text="Healthy: "  FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding CurrentHealthy}"></TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Margin="5,5,5,5" Orientation="Horizontal">
+                <TextBlock Text="Infected: "  FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding CurrentInfected}"></TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Margin="5,5,5,5" Orientation="Horizontal">
+                <TextBlock Text="Recovered: "  FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding CurrentRecovered}"></TextBlock>
+            </StackPanel>
         </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="1">
-            <TextBlock Text="Infected"></TextBlock>
-            <TextBlock Text="{Binding CurrentInfected}"></TextBlock>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="2">
-            <TextBlock Text="Recovered"></TextBlock>
-            <TextBlock Text="{Binding CurrentRecovered}"></TextBlock>
-        </StackPanel>
+       
         <chart:Chart Title="States Over Time" Grid.Row="1" Grid.ColumnSpan="3">
             
             <chart:Chart.Axes>

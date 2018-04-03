@@ -6,8 +6,11 @@
         xmlns:local="clr-namespace:DiseaseSpreadModel"
         xmlns:views="clr-namespace:DiseaseSpreadModel.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        Title="SIR Simulator"
+        Width="900" Height="600"
+        >
+    
+    <Grid Background="#dddddd">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
