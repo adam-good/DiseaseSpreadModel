@@ -63,7 +63,6 @@ namespace DiseaseSpreadModel.ViewModels
         public Enums.RunStateEnum RunState { get; set; }
 
         private DispatcherTimer SimulationTimer;
-        private Stopwatch stopWatch;
 
         public SimulationViewModel()
         {
@@ -82,7 +81,6 @@ namespace DiseaseSpreadModel.ViewModels
             SimulationTimer.Interval = new TimeSpan(0, 0, 0, 0, SimulationSettings.CycleSpeed);
             SimulationTimer.Tick += new EventHandler(Simulation_Tick);
 
-            stopWatch = new Stopwatch();
             SimulationTime = 0;
             RunState = Enums.RunStateEnum.Stop;
 
@@ -133,12 +131,9 @@ namespace DiseaseSpreadModel.ViewModels
 
         private void Simulation_Tick(object sender, EventArgs e)
         {
-            stopWatch.Start();
             PopulationViewModel.UpdatePopulation();
-            stopWatch.Stop();
 
             SimulationTime++;
-            stopWatch.Reset();
 
             StatisticsViewModel.AddTimestepStatistics(SimulationTime, PopulationViewModel);
             
