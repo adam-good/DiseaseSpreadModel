@@ -98,6 +98,7 @@
     <Compile Include="Enums\WeekDayEnum.cs" />
     <Compile Include="Enums\InfectionStateEnum.cs" />
     <Compile Include="Enums\RunStateEnum.cs" />
+    <Compile Include="Models\DaysOffKeyValuePair.cs" />
     <Compile Include="Models\DiseaseModel.cs" />
     <Compile Include="Models\PersonModel.cs" />
     <Compile Include="Models\PopulationSettings.cs" />

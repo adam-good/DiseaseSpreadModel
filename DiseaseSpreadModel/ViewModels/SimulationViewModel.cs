@@ -200,7 +200,9 @@ namespace DiseaseSpreadModel.ViewModels
         public void Export()
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.AddExtension = true;
             saveFileDialog.DefaultExt = "csv";
+            saveFileDialog.Filter = "CSV |*.csv";
             bool? result = saveFileDialog.ShowDialog();
             if (result != null && result.Value == true)
             {
