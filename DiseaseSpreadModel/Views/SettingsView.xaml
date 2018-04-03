@@ -81,26 +81,29 @@
                 <xctk:DecimalUpDown Text="{Binding SimulationSettings.CycleSpeed, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DecimalUpDown>
             </StackPanel>
 
-        <StackPanel Grid.Row="5" Grid.Column="3" Orientation="Horizontal">
-            <Label Content="Days Off"></Label>
+
+            <StackPanel Grid.Row="6" Grid.Column="2" Orientation="Vertical">
+                <Label Content="Days Off"></Label>
+                <ListView ItemsSource="{Binding SimulationSettings.DaysOffList, UpdateSourceTrigger=PropertyChanged}">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"></StackPanel>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Label Content="{Binding Key}"></Label>
+                                <CheckBox IsChecked="{Binding Value}" VerticalAlignment="Center"></CheckBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+
         </StackPanel>
-        <StackPanel Grid.Row="6" Grid.Column="3" Orientation="Horizontal">
-            <ListView ItemsSource="{Binding SimulationSettings.DaysOffList, UpdateSourceTrigger=PropertyChanged}">
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal"></StackPanel>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Vertical">
-                            <Label Content="{Binding Key}"></Label>
-                            <CheckBox IsChecked="{Binding Value}"></CheckBox>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackPanel>
+
+
         
         <StackPanel Grid.Row="7" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5,5,5,5">
             <Button Content="Save" Command="{Binding SaveCommand}"></Button>
