@@ -22,9 +22,9 @@ namespace DiseaseSpreadModel.ViewModels
         {
             SaveCommand = new DelegateCommand(Save);
 
-            PopulationSettings = populationSettings;
-            DiseaseSettings = disease;
-            SimulationSettings = simulationSettings;
+            PopulationSettings = new PopulationSettings(populationSettings);
+            DiseaseSettings = new DiseaseModel(disease);
+            SimulationSettings = new SimulationSettings(simulationSettings);
         }
         public void Save()
         {

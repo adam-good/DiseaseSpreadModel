@@ -22,5 +22,14 @@ namespace DiseaseSpreadModel.Models
             AverageIncubationPeriod = averageIncubationPeriod;
             AverageInfectionPeriod = averageInfectionPeriod;
         }
+
+        public DiseaseModel(DiseaseModel diseaseModel)
+        {
+            DiseaseName = diseaseModel.DiseaseName;
+            InfectionRate = diseaseModel.InfectionRate;
+            RecoveryRate = diseaseModel.RecoveryRate;
+            AverageIncubationPeriod = diseaseModel.AverageIncubationPeriod;
+            AverageInfectionPeriod = diseaseModel.AverageInfectionPeriod;
+        }
     }
 }

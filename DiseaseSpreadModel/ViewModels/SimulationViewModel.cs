@@ -98,13 +98,26 @@ namespace DiseaseSpreadModel.ViewModels
 
         public void Settings()
         {
+            if(RunState == Enums.RunStateEnum.Run)
+            {
+                Pause();
+            }
+
             SettingsView popup = new SettingsView(new SettingsViewModel(SimulationSettings, Disease, PopulationSettings));
             bool? result = popup.ShowDialog();
             if(result != null && result.Value)
             {
-                PopulationSettings = ((SettingsViewModel)popup.DataContext).PopulationSettings;
-                SimulationSettings = ((SettingsViewModel)popup.DataContext).SimulationSettings;
-                Disease = ((SettingsViewModel)popup.DataContext).DiseaseSettings;
+                SettingsViewModel viewModel = (SettingsViewModel)popup.DataContext;
+                PopulationSettings = viewModel.PopulationSettings;
+                SimulationSettings = viewModel.SimulationSettings;
+                Disease = viewModel.DiseaseSettings;
+
+                Reset();
+            }
+            else
+            {
+                // Unpauses the simulation
+                Pause();
             }
         }
 

@@ -30,6 +30,12 @@
             <TextBlock Text="{Binding CurrentRecovered}"></TextBlock>
         </StackPanel>
         <chart:Chart Title="States Over Time" Grid.Row="1" Grid.ColumnSpan="3">
+            
+            <chart:Chart.Axes>
+                <chart:LinearAxis Orientation="Y" Minimum="0" Title="Number of People" Margin="0,0,10,0" />
+                <chart:LinearAxis Orientation="X" Minimum="0" Title="Days" Margin="0,0,10,0" />
+            </chart:Chart.Axes>
+            
             <chart:LineSeries Name="Infected"
                               Title="Infected"
                               DependentValuePath="Value"

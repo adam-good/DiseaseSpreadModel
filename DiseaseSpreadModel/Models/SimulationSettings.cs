@@ -14,5 +14,10 @@ namespace DiseaseSpreadModel.Models
         {
             CycleSpeed = cycleSpeed;
         }
+
+        public SimulationSettings(SimulationSettings simulationSettings)
+        {
+            CycleSpeed = simulationSettings.CycleSpeed;
+        }
     }
 }
