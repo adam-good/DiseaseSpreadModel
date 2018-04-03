@@ -12,15 +12,14 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
-            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="3">
-            <TextBlock Text="Simulation Controls"></TextBlock>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="10,15,10,5" Background="#c6c6c6">
+            <TextBlock Text="Simulation Controls" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
             <StackPanel Orientation="Horizontal">
                 <Button Content="Settings" Command="{Binding SettingsCommand}" Margin="4,4,4,4"/>
                 <Button Content="Run" Command="{Binding RunCommand}" Margin="4,4,4,4"></Button>
@@ -28,21 +27,27 @@
                 <Button Content="Reset" Command="{Binding ResetCommand}" Margin="4,4,4,4"></Button>
             </StackPanel>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="0">
-            <TextBlock Text="Name: "></TextBlock>
-            <TextBlock Text="{Binding Disease.DiseaseName}"></TextBlock>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Background="#c6c6c6" Orientation="Horizontal" HorizontalAlignment="Center"  Margin="0,2,0,2" >
+            <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Orientation="Horizontal" Margin="5,5,5,5">
+                <TextBlock Text="Name: "  FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Disease.DiseaseName}"></TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal" Margin="5,5,5,5">
+                <TextBlock Text="Infection Rate: "  FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Disease.InfectionRate}"></TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" Orientation="Horizontal" Margin="5,5,5,5">
+                <TextBlock Text="Infection Period: "  FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Disease.AverageInfectionPeriod}"></TextBlock>
+            </StackPanel>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="1">
-            <TextBlock Text="Infection Rate: "></TextBlock>
-            <TextBlock Text="{Binding Disease.InfectionRate}"></TextBlock>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="2">
-            <TextBlock Text="Infection Period: "></TextBlock>
-            <TextBlock Text="{Binding Disease.AverageInfectionPeriod}"></TextBlock>
-        </StackPanel>
-        <ScrollViewer Grid.Row="2" Grid.ColumnSpan="3">
-            <!--<views:PopulationView  DataContext="{Binding PopulationViewModel}"></views:PopulationView>-->
-        </ScrollViewer>
-        <views:StatisticsView Grid.Row="0" Grid.RowSpan="3" Grid.Column="3" DataContext="{Binding StatisticsViewModel}"></views:StatisticsView>
+        
+        <!--<ScrollViewer Grid.Row="2" Grid.ColumnSpan="3">
+            --><!--<views:PopulationView  DataContext="{Binding PopulationViewModel}"></views:PopulationView>--><!--
+        </ScrollViewer>-->
+        <views:StatisticsView Grid.Row="2" Grid.RowSpan="3"
+                              Grid.ColumnSpan="4"  
+                              Margin="10,10,10,10"
+                              DataContext="{Binding StatisticsViewModel}"></views:StatisticsView>
     </Grid>
 </UserControl>

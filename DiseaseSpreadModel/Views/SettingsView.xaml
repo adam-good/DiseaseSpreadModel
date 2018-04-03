@@ -6,8 +6,11 @@
              xmlns:local="clr-namespace:DiseaseSpreadModel.Views"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+             Title="Settings"
+             d:DesignHeight="500" d:DesignWidth="500"
+             SizeToContent="WidthAndHeight">
+
+    <Grid Background="#dddddd">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -24,11 +27,11 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center">
-            <TextBlock Text="SETTINGS"></TextBlock>
+            <TextBlock Text="SETTINGS" FontWeight="Bold" FontSize="20"></TextBlock>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
-            <Label Content="Population Settings"></Label>
-        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
+            <Label Content="Population Settings" FontWeight="Bold"></Label>
+
             <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
                 <Label Content="Population Size"></Label>
                 <xctk:DecimalUpDown Text="{Binding PopulationSettings.PopulationSize, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DecimalUpDown>
@@ -41,10 +44,11 @@
                 <Label Content="Contact Rate Std. Dev."></Label>
                 <xctk:DecimalUpDown Text="{Binding PopulationSettings.ContactRateStandardDeviation, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DecimalUpDown>
             </StackPanel>
-        
-        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-            <Label Content="Disease Settings"></Label>
         </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+            <Label Content="Disease Settings" FontWeight="Bold"></Label>
+
             <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
                 <Label Content="Disease Name"></Label>
                 <TextBox Text="{Binding DiseaseSettings.DiseaseName, UpdateSourceTrigger=PropertyChanged}" Margin="4,4,4,4" Width="auto"></TextBox>
@@ -59,24 +63,25 @@
             </StackPanel>
             <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
                 <Label Content="Avg. Incubation Period"></Label>
-                
+
                 <xctk:DecimalUpDown Text="{Binding DiseaseSettings.AverageIncubationPeriod, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DecimalUpDown>
             </StackPanel>
             <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
                 <Label Content="Avg. Infection Period"></Label>
-               
+
                 <xctk:DecimalUpDown Text="{Binding DiseaseSettings.AverageInfectionPeriod, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DecimalUpDown>
             </StackPanel>
-
-
-        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal">
-            <Label Content="Simulation Settings"></Label>
         </StackPanel>
+
+
+        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical">
+            <Label Content="Simulation Settings" FontWeight="Bold"></Label>
             <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal">
                 <Label Content="Simulation Time Step(ms)"></Label>
                 <xctk:DecimalUpDown Text="{Binding SimulationSettings.CycleSpeed, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DecimalUpDown>
             </StackPanel>
-        
+        </StackPanel>
+
         <StackPanel Grid.Row="7" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5,5,5,5">
             <Button Content="Save" Command="{Binding SaveCommand}"></Button>
         </StackPanel>
