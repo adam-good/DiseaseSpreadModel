@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Threading;
 using System.Diagnostics;
 using DiseaseSpreadModel.Views;
+using System.Collections.ObjectModel;
 
 namespace DiseaseSpreadModel.ViewModels
 {
@@ -75,7 +76,20 @@ namespace DiseaseSpreadModel.ViewModels
         {
             PopulationSettings = new PopulationSettings();
             Disease = new DiseaseModel("Default", 0.25f, 0.1f, 3.0f, 5.0f); //TODO: fix this, this is literally aids
-            SimulationSettings = new SimulationSettings(100);
+
+            ObservableCollection<DaysOffKeyValuePair> daysOffDefault = new ObservableCollection<DaysOffKeyValuePair>()
+            {
+                new DaysOffKeyValuePair(DayOfWeek.Sunday, false),
+                new DaysOffKeyValuePair(DayOfWeek.Monday, false),
+                new DaysOffKeyValuePair(DayOfWeek.Tuesday, false),
+                new DaysOffKeyValuePair(DayOfWeek.Wednesday, false),
+                new DaysOffKeyValuePair(DayOfWeek.Thursday, false),
+                new DaysOffKeyValuePair(DayOfWeek.Friday, false),
+                new DaysOffKeyValuePair(DayOfWeek.Saturday, false),
+
+            };
+
+            SimulationSettings = new SimulationSettings(100, daysOffDefault);
             PopulationViewModel = new PopulationViewModel(PopulationSettings, disease);
             PopulationViewModel.InitializePopulation();
 
