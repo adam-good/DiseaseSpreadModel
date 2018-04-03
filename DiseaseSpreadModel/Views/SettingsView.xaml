@@ -73,7 +73,7 @@
             <Label Content="Simulation Settings"></Label>
         </StackPanel>
             <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal">
-                <Label Content="Simulation Speed"></Label>
+                <Label Content="Simulation Time Step(ms)"></Label>
                 <xctk:DecimalUpDown Text="{Binding SimulationSettings.CycleSpeed, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DecimalUpDown>
             </StackPanel>
         

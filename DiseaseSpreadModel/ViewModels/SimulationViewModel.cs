@@ -98,9 +98,11 @@ namespace DiseaseSpreadModel.ViewModels
 
         public void Settings()
         {
+            bool simulationWasRunning = false;
             if(RunState == Enums.RunStateEnum.Run)
             {
                 Pause();
+                simulationWasRunning = true;
             }
 
             SettingsView popup = new SettingsView(new SettingsViewModel(SimulationSettings, Disease, PopulationSettings));
@@ -114,7 +116,7 @@ namespace DiseaseSpreadModel.ViewModels
 
                 Reset();
             }
-            else
+            else if(simulationWasRunning)
             {
                 // Unpauses the simulation
                 Pause();
@@ -158,6 +160,8 @@ namespace DiseaseSpreadModel.ViewModels
 
             StatisticsViewModel = new StatisticsViewModel();
             StatisticsViewModel.AddTimestepStatistics(SimulationTime, PopulationViewModel);
+
+            SimulationTimer.Interval = new TimeSpan(0, 0, 0, 0, SimulationSettings.CycleSpeed);
         }
 
         public void Pause()
