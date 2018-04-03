@@ -48,6 +48,13 @@ namespace DiseaseSpreadModel.ViewModels
             set { simulationTime = value; RaisePropertyChangedEvent("SimulationTime"); }
         }
 
+        private DayOfWeek currentDayOfWeek;
+        public DayOfWeek CurrentDayOfWeek
+        {
+            get { return currentDayOfWeek; }
+            set { currentDayOfWeek = value; RaisePropertyChangedEvent("CurrentDayOfWeek"); }
+        }
+
         private StatisticsViewModel statisticsViewModel;
         public StatisticsViewModel StatisticsViewModel
         {
@@ -103,15 +110,8 @@ namespace DiseaseSpreadModel.ViewModels
 
         public void Run()
         {
+            Reset();
             SimulationTimer.Start();
-
-            SimulationTime = 0;
-
-            PopulationViewModel = new PopulationViewModel(PopulationSettings, disease);
-            PopulationViewModel.InitializePopulation();
-
-            StatisticsViewModel = new StatisticsViewModel();
-            StatisticsViewModel.AddTimestepStatistics(SimulationTime, PopulationViewModel);
 
             RunState = Enums.RunStateEnum.Run;
         }
@@ -121,6 +121,7 @@ namespace DiseaseSpreadModel.ViewModels
             PopulationViewModel.UpdatePopulation();
 
             SimulationTime++;
+            CurrentDayOfWeek = (DayOfWeek)(SimulationTime % 7);
 
             StatisticsViewModel.AddTimestepStatistics(SimulationTime, PopulationViewModel);
             
@@ -137,6 +138,7 @@ namespace DiseaseSpreadModel.ViewModels
             RunState = Enums.RunStateEnum.Stop;
 
             SimulationTime = 0;
+            CurrentDayOfWeek = (DayOfWeek)(SimulationTime % 7);
 
             PopulationViewModel = new PopulationViewModel(PopulationSettings, Disease);
             PopulationViewModel.InitializePopulation();
