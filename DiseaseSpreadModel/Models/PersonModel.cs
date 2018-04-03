@@ -61,7 +61,7 @@ namespace DiseaseSpreadModel.Models
 
         public void Recover()
         {
-            if(daysInfected > Disease.AverageInfectionPeriod)
+            if(daysInfected >= Disease.AverageInfectionPeriod)
             {
                 InfectionState = InfectionStateEnum.Recovered;
             }
