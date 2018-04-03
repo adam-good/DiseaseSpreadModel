@@ -25,5 +25,12 @@ namespace DiseaseSpreadModel.Models
             ContactRateMean = contactRateMean;
             ContactRateStandardDeviation = contactRateStandardDeviation;
         }
+
+        public PopulationSettings(PopulationSettings populationSettings)
+        {
+            PopulationSize = populationSettings.PopulationSize;
+            ContactRateMean = populationSettings.ContactRateMean;
+            ContactRateStandardDeviation = ContactRateStandardDeviation;
+        }
     }
 }
