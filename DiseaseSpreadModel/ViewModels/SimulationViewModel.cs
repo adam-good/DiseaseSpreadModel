@@ -11,6 +11,7 @@ using DiseaseSpreadModel.Views;
 using System.Collections.ObjectModel;
 using Microsoft.Win32;
 using System.IO;
+using DiseaseSpreadModel.Enums;
 
 namespace DiseaseSpreadModel.ViewModels
 {
@@ -51,8 +52,8 @@ namespace DiseaseSpreadModel.ViewModels
             set { simulationTime = value; RaisePropertyChangedEvent("SimulationTime"); }
         }
 
-        private DayOfWeek currentDayOfWeek;
-        public DayOfWeek CurrentDayOfWeek
+        private WeekDays currentDayOfWeek;
+        public WeekDays CurrentDayOfWeek
         {
             get { return currentDayOfWeek; }
             set { currentDayOfWeek = value; RaisePropertyChangedEvent("CurrentDayOfWeek"); }
@@ -82,13 +83,13 @@ namespace DiseaseSpreadModel.ViewModels
 
             ObservableCollection<DaysOffKeyValuePair> daysOffDefault = new ObservableCollection<DaysOffKeyValuePair>()
             {
-                new DaysOffKeyValuePair(DayOfWeek.Sunday, false),
-                new DaysOffKeyValuePair(DayOfWeek.Monday, false),
-                new DaysOffKeyValuePair(DayOfWeek.Tuesday, false),
-                new DaysOffKeyValuePair(DayOfWeek.Wednesday, false),
-                new DaysOffKeyValuePair(DayOfWeek.Thursday, false),
-                new DaysOffKeyValuePair(DayOfWeek.Friday, false),
-                new DaysOffKeyValuePair(DayOfWeek.Saturday, false),
+                new DaysOffKeyValuePair(WeekDays.Sun, false),
+                new DaysOffKeyValuePair(WeekDays.Mon, false),
+                new DaysOffKeyValuePair(WeekDays.Tue, false),
+                new DaysOffKeyValuePair(WeekDays.Wed, false),
+                new DaysOffKeyValuePair(WeekDays.Thu, false),
+                new DaysOffKeyValuePair(WeekDays.Fri, false),
+                new DaysOffKeyValuePair(WeekDays.Sat, false),
 
             };
 
@@ -154,7 +155,7 @@ namespace DiseaseSpreadModel.ViewModels
             PopulationViewModel.UpdatePopulation(SimulationSettings.DaysOffList.FirstOrDefault((d) => d.Key == CurrentDayOfWeek).Value);
 
             SimulationTime++;
-            CurrentDayOfWeek = (DayOfWeek)(SimulationTime % 7);
+            CurrentDayOfWeek = (WeekDays)(SimulationTime % 7);
 
             StatisticsViewModel.AddTimestepStatistics(SimulationTime, PopulationViewModel);
             
@@ -171,7 +172,7 @@ namespace DiseaseSpreadModel.ViewModels
             RunState = Enums.RunStateEnum.Stop;
 
             SimulationTime = 0;
-            CurrentDayOfWeek = (DayOfWeek)(SimulationTime % 7);
+            CurrentDayOfWeek = (WeekDays)(SimulationTime % 7);
 
             PopulationViewModel = new PopulationViewModel(PopulationSettings, Disease);
             PopulationViewModel.InitializePopulation();
