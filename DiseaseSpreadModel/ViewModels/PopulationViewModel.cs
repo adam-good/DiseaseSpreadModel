@@ -59,7 +59,7 @@ namespace DiseaseSpreadModel.ViewModels
             }
         }
 
-        public void UpdatePopulation()
+        public void UpdatePopulation(bool isDayOff)
         {
             List<PersonModel> updatedPopulation = new List<PersonModel>();
             Parallel.ForEach(Population, (person) =>
@@ -69,27 +69,22 @@ namespace DiseaseSpreadModel.ViewModels
 
             Dictionary<int, List<int>> interactionList = new Dictionary<int, List<int>>();
 
+
             foreach (var person in Population)
             {
-                int index = Random.Next(ContactRateDistribution.Count);
+                interactionList[person.PersonId] = new List<int>();
+            }
 
-                int personInteractedWithID = ContactRateDistribution[index];
-                if(interactionList.ContainsKey(personInteractedWithID))
+            if (!isDayOff)
+            {
+                foreach (var person in Population)
                 {
+                    int index = Random.Next(ContactRateDistribution.Count);
+
+                    int personInteractedWithID = ContactRateDistribution[index];
                     interactionList[personInteractedWithID].Add(person.PersonId);
-                }
-                else
-                {
-                    interactionList[personInteractedWithID] = new List<int>() { person.PersonId };
-                }
-
-                if(interactionList.ContainsKey(person.PersonId))
-                {
                     interactionList[person.PersonId].Add(personInteractedWithID);
-                }
-                else
-                {
-                    interactionList[person.PersonId] = new List<int>() { personInteractedWithID };
+                    
                 }
             }
 

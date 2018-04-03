@@ -147,7 +147,7 @@ namespace DiseaseSpreadModel.ViewModels
 
         private void Simulation_Tick(object sender, EventArgs e)
         {
-            PopulationViewModel.UpdatePopulation();
+            PopulationViewModel.UpdatePopulation(SimulationSettings.DaysOffList.FirstOrDefault((d) => d.Key == CurrentDayOfWeek).Value);
 
             SimulationTime++;
             CurrentDayOfWeek = (DayOfWeek)(SimulationTime % 7);
