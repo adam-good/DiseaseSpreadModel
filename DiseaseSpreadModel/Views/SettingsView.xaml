@@ -77,10 +77,13 @@
         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical" Grid.ColumnSpan="2">
             <Label Content="Simulation Settings" FontWeight="Bold"></Label>
             <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal">
+                <Label Content="Number of data sets to test from"></Label>
+                <xctk:DecimalUpDown Text="{Binding SimulationSettings.NumOfRuns, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DecimalUpDown>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="2" Orientation="Horizontal">
                 <Label Content="Simulation Time Step(ms)"></Label>
                 <xctk:DecimalUpDown Text="{Binding SimulationSettings.CycleSpeed, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DecimalUpDown>
             </StackPanel>
-
 
             <StackPanel Grid.Row="6" Grid.Column="2" Orientation="Vertical">
                 <Label Content="Days Off"></Label>
