@@ -215,7 +215,7 @@ namespace DiseaseSpreadModel.ViewModels
                         double infected = statisticsViewModel.Infected.First(w => w.Key == key).Value;
                         double recovered = statisticsViewModel.Recovered.First(w => w.Key == key).Value;
 
-                        stream.WriteLine("{0},{1},{2},{3}", key, healthy, infected, recovered);
+                        stream.WriteLine($"{key},{healthy:0.######},{infected:0.######},{recovered:0.######}");
                     }
                 }
             }

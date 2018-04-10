@@ -50,8 +50,11 @@ namespace DiseaseSpreadModel.ViewModels
             foreach(var population in PopulationModels)
             {
                 population.UpdatePopulation(isDayOff, Random);
-                updatedPopulations.Add(population);
-            }
+                lock (updatedPopulations)
+                {
+                    updatedPopulations.Add(population);
+                }
+            };
 
             PopulationModels.Clear();
             foreach (var updatedPopulation in updatedPopulations)
@@ -63,7 +66,7 @@ namespace DiseaseSpreadModel.ViewModels
         public double GetAverageInfected()
         {
             int populationsCount = PopulationModels.Count;
-            int totalInfected = 0;
+            double totalInfected = 0;
             foreach (var populationModel in PopulationModels)
             {
                 int infectedCount = populationModel.Population.Count(c => c.InfectionState == InfectionStateEnum.Infected);
@@ -75,7 +78,7 @@ namespace DiseaseSpreadModel.ViewModels
         public double GetAverageHealthy()
         {
             int populationsCount = PopulationModels.Count;
-            int totalHealthy = 0;
+            double totalHealthy = 0;
             foreach (var populationModel in PopulationModels)
             {
                 int healthyCount = populationModel.Population.Count(c => c.InfectionState == InfectionStateEnum.Healthy);
@@ -87,14 +90,14 @@ namespace DiseaseSpreadModel.ViewModels
         public double GetAverageRecovered()
         {
             int populationsCount = PopulationModels.Count;
-            int totalRecovered = 0;
+            double totalRecovered = 0;
             foreach (var populationModel in PopulationModels)
             {
                 int recoveredCount = populationModel.Population.Count(c => c.InfectionState == InfectionStateEnum.Recovered);
                 totalRecovered += recoveredCount;
             }
 
-            return totalRecovered / populationsCount;
+            return (double)totalRecovered / populationsCount;
         }
     }
 }

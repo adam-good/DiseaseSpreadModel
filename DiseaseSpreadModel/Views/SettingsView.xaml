@@ -65,15 +65,6 @@
                 <Label Content="Infection Rate"></Label>
                 <xctk:DecimalUpDown Text="{Binding DiseaseSettings.InfectionRate, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DecimalUpDown>
             </StackPanel>
-            <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
-                <Label Content="Recovery Rate"></Label>
-                <xctk:DecimalUpDown Text="{Binding DiseaseSettings.RecoveryRate, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DecimalUpDown>
-            </StackPanel>
-            <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
-                <Label Content="Avg. Incubation Period"></Label>
-
-                <xctk:DecimalUpDown Text="{Binding DiseaseSettings.AverageIncubationPeriod, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DecimalUpDown>
-            </StackPanel>
             <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
                 <Label Content="Avg. Infection Period"></Label>
 
