@@ -37,12 +37,20 @@
                 <xctk:DecimalUpDown Text="{Binding PopulationSettings.PopulationSize, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DecimalUpDown>
             </StackPanel>
             <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
-                <Label Content="Contact Rate Mean"></Label>
-                <xctk:DecimalUpDown Text="{Binding PopulationSettings.ContactRateMean, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DecimalUpDown>
+                <Label Content="Mean Contacts Per Day"></Label>
+                <xctk:DecimalUpDown Text="{Binding PopulationSettings.MeanContactsPerDay, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DecimalUpDown>
             </StackPanel>
             <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
-                <Label Content="Contact Rate Std. Dev."></Label>
-                <xctk:DecimalUpDown Text="{Binding PopulationSettings.ContactRateStandardDeviation, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DecimalUpDown>
+                <Label Content="Std Dev of Contacts"></Label>
+                <xctk:DoubleUpDown Text="{Binding PopulationSettings.StdDevContactsPerDay, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DoubleUpDown>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
+                <Label Content="Mean Contacts Per Day Off"></Label>
+                <xctk:DecimalUpDown Text="{Binding PopulationSettings.MeanContactsPerDayOff, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DecimalUpDown>
+            </StackPanel>
+            <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
+                <Label Content="Std Dev of Contacts Days Off"></Label>
+                <xctk:DoubleUpDown Text="{Binding PopulationSettings.StdDevContactsPerDayOff, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DoubleUpDown>
             </StackPanel>
         </StackPanel>
 

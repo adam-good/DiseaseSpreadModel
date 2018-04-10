@@ -11,7 +11,8 @@ namespace DiseaseSpreadModel.Models
     {
         public static Random Random = new Random();
         public int PersonId { get; private set; }
-        public int ContactRate { get; private set; }
+        public int MeanContactsPerDay { get; private set; }
+        public int MeanContactsPerDayOff { get; private set; }
         public InfectionStateEnum InfectionState { get; private set; }
         public DiseaseModel Disease { get; set; }
         
@@ -20,17 +21,19 @@ namespace DiseaseSpreadModel.Models
         public PersonModel(PersonModel person)
         {
             PersonId = person.PersonId;
-            ContactRate = person.ContactRate;
+            MeanContactsPerDay = person.MeanContactsPerDay;
+            MeanContactsPerDayOff = person.MeanContactsPerDayOff;
             InfectionState = person.InfectionState;
             Disease = person.Disease;
 
             daysInfected = person.daysInfected;
         }
 
-        public PersonModel(int personId, int contactRate, InfectionStateEnum startingInfectionState, DiseaseModel disease)
+        public PersonModel(int personId, int contactRate, int contactRateDayOff, InfectionStateEnum startingInfectionState, DiseaseModel disease)
         {
             PersonId = personId;
-            ContactRate = contactRate;
+            MeanContactsPerDay = contactRate;
+            MeanContactsPerDayOff = contactRateDayOff;
             InfectionState = startingInfectionState;
             Disease = disease;
 

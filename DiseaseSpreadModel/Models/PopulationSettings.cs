@@ -9,28 +9,37 @@ namespace DiseaseSpreadModel.Models
     public class PopulationSettings
     {
         public int PopulationSize { get; set; }
-        public float ContactRateMean { get; set; }
-        public float ContactRateStandardDeviation { get; set; }
+        public float MeanContactsPerDay { get; set; }
+        public float StdDevContactsPerDay { get; set; }
+        public float MeanContactsPerDayOff { get; set; }
+        public float StdDevContactsPerDayOff { get; set; }
 
         public PopulationSettings()
         {
             PopulationSize = 100;
-            ContactRateMean = 10;
-            ContactRateStandardDeviation = 1.0f;
+            MeanContactsPerDay = 10;
+            StdDevContactsPerDay = 0.01f;
+
+            MeanContactsPerDayOff = 3;
+            StdDevContactsPerDayOff = 0.3f;
         }
 
-        public PopulationSettings(int populationSize, float contactRateMean, float contactRateStandardDeviation)
+        public PopulationSettings(int populationSize, float meanContactsPerDay, float stdDevContactsPerDay, float meanContactsPerDayOff, float stdDevContactsPerDayOff)
         {
             PopulationSize = populationSize;
-            ContactRateMean = contactRateMean;
-            ContactRateStandardDeviation = contactRateStandardDeviation;
+            MeanContactsPerDay = meanContactsPerDay;
+            StdDevContactsPerDay = stdDevContactsPerDay;
+            MeanContactsPerDay = meanContactsPerDayOff;
+            StdDevContactsPerDay = stdDevContactsPerDayOff;
         }
 
         public PopulationSettings(PopulationSettings populationSettings)
         {
             PopulationSize = populationSettings.PopulationSize;
-            ContactRateMean = populationSettings.ContactRateMean;
-            ContactRateStandardDeviation = ContactRateStandardDeviation;
+            MeanContactsPerDay = populationSettings.MeanContactsPerDay;
+            StdDevContactsPerDay = populationSettings.StdDevContactsPerDay;
+            MeanContactsPerDayOff = populationSettings.MeanContactsPerDayOff;
+            StdDevContactsPerDayOff = populationSettings.StdDevContactsPerDayOff;
         }
     }
 }

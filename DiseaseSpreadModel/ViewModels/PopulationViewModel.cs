@@ -13,6 +13,7 @@ namespace DiseaseSpreadModel.ViewModels
         public static Random Random = new Random();
         public ObservableCollection<PersonModel> Population { get; private set; }
         private List<int> ContactRateDistribution { get; set; }
+        private List<int> ContactRateDayOffDistribution { get; set; }
 
         private PopulationSettings settings;
         public PopulationSettings Settings
@@ -29,19 +30,27 @@ namespace DiseaseSpreadModel.ViewModels
             disease = _disease;
 
             ContactRateDistribution = new List<int>();
+            ContactRateDayOffDistribution = new List<int>();
         }
 
         public void InitializePopulation()
         {
-            MathNet.Numerics.Distributions.Normal contactRateGeneration = new MathNet.Numerics.Distributions.Normal(settings.ContactRateMean, settings.ContactRateStandardDeviation);
+            MathNet.Numerics.Distributions.Normal contactRateGeneration = new MathNet.Numerics.Distributions.Normal(settings.MeanContactsPerDay, settings.StdDevContactsPerDay);
+            MathNet.Numerics.Distributions.Normal contactRateDayOffGeneration = new MathNet.Numerics.Distributions.Normal(settings.MeanContactsPerDayOff, settings.StdDevContactsPerDay);
 
             ContactRateDistribution = new List<int>();
             for (int personId = 0; personId < settings.PopulationSize; personId++)
             {
-                int contactRate = (int)contactRateGeneration.Sample();
+                int contactRate = (int)Math.Round(contactRateGeneration.Sample(), 0);
                 for (int j = 0; j < contactRate; j++)
                 {
                     ContactRateDistribution.Add(personId);
+                }
+
+                int contactRateDayOff = (int)Math.Round(contactRateDayOffGeneration.Sample(), 0);
+                for (int j = 0; j < contactRateDayOff; j++)
+                {
+                    ContactRateDayOffDistribution.Add(personId);
                 }
 
                 Enums.InfectionStateEnum initialInfectionState;
@@ -54,7 +63,7 @@ namespace DiseaseSpreadModel.ViewModels
                     initialInfectionState = Enums.InfectionStateEnum.Healthy;
                 }
 
-                PersonModel newPersonModel = new PersonModel(personId, contactRate, initialInfectionState, disease);
+                PersonModel newPersonModel = new PersonModel(personId, contactRate, contactRateDayOff, initialInfectionState, disease);
                 Population.Add(newPersonModel);
             }
         }
@@ -69,7 +78,6 @@ namespace DiseaseSpreadModel.ViewModels
 
             Dictionary<int, List<int>> interactionList = new Dictionary<int, List<int>>();
 
-
             foreach (var person in Population)
             {
                 interactionList[person.PersonId] = new List<int>();
@@ -79,12 +87,41 @@ namespace DiseaseSpreadModel.ViewModels
             {
                 foreach (var person in Population)
                 {
-                    int index = Random.Next(ContactRateDistribution.Count);
+                    for (int i = 0; i < Math.Ceiling((double)person.MeanContactsPerDay / 2); i++)
+                    {
+                        int index = Random.Next(ContactRateDistribution.Count);
 
-                    int personInteractedWithID = ContactRateDistribution[index];
-                    interactionList[personInteractedWithID].Add(person.PersonId);
-                    interactionList[person.PersonId].Add(personInteractedWithID);
-                    
+                        int personInteractedWithID = ContactRateDistribution[index];
+                        interactionList[personInteractedWithID].Add(person.PersonId);
+                        interactionList[person.PersonId].Add(personInteractedWithID);
+                    }                    
+                }
+            }
+            else
+            {
+                foreach(var person in Population)
+                {
+                    for(int i = 0; i < Math.Ceiling((double)person.MeanContactsPerDayOff / 2); i++)
+                    {
+                        int index = Random.Next(ContactRateDayOffDistribution.Count);
+
+                        int personInteractedWithID = ContactRateDayOffDistribution[index];
+                        interactionList[personInteractedWithID].Add(person.PersonId);
+                        interactionList[person.PersonId].Add(personInteractedWithID);
+                    }
+                }
+            }
+
+            Dictionary<int, int> foo = new Dictionary<int, int>();
+            foreach(var f in interactionList)
+            {
+                if(foo.ContainsKey(f.Value.Count))
+                {
+                    foo[f.Value.Count]++;
+                }
+                else
+                {
+                    foo[f.Value.Count] = 1;
                 }
             }
 
