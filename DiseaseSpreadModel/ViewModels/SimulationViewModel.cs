@@ -93,7 +93,7 @@ namespace DiseaseSpreadModel.ViewModels
 
             };
 
-            SimulationSettings = new SimulationSettings(100, daysOffDefault);
+            SimulationSettings = new SimulationSettings(1, 100, daysOffDefault);
             PopulationViewModel = new PopulationViewModel(PopulationSettings, disease);
             PopulationViewModel.InitializePopulation();
 

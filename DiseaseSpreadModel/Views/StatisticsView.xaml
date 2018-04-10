@@ -45,7 +45,7 @@
             </StackPanel>
         </StackPanel>
        
-        <chart:Chart Title="States Over Time" Grid.Row="1" Grid.ColumnSpan="3">
+        <chart:Chart Title="Infection Model" Grid.Row="1" Grid.ColumnSpan="3">
             
             <chart:Chart.Axes>
                 <chart:LinearAxis Orientation="Y" Minimum="0" Title="Number of People" Margin="0,0,10,0" />

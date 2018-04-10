@@ -26,7 +26,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" HorizontalAlignment="Center" Grid.Column="1" Margin="36,0">
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" Grid.ColumnSpan="3" Margin="36,0">
             <TextBlock Text="SETTINGS" FontWeight="Bold" FontSize="20"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
@@ -85,10 +85,13 @@
         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical" Grid.ColumnSpan="2">
             <Label Content="Simulation Settings" FontWeight="Bold"></Label>
             <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal">
+                <Label Content="Number of data sets to test from"></Label>
+                <xctk:DecimalUpDown Text="{Binding SimulationSettings.NumOfRuns, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DecimalUpDown>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="2" Orientation="Horizontal">
                 <Label Content="Simulation Time Step(ms)"></Label>
                 <xctk:DecimalUpDown Text="{Binding SimulationSettings.CycleSpeed, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DecimalUpDown>
             </StackPanel>
-
 
             <StackPanel Grid.Row="6" Grid.Column="2" Orientation="Vertical">
                 <Label Content="Days Off"></Label>
@@ -119,7 +122,7 @@
 
 
 
-        <StackPanel Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Center" Margin="68,5" Grid.Column="1">
+        <StackPanel Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Center" Margin="68,5" Grid.ColumnSpan="3">
             <Button Content="Save" Command="{Binding SaveCommand}"></Button>
         </StackPanel>
     </Grid>
