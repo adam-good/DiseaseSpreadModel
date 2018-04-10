@@ -101,6 +101,7 @@
     <Compile Include="Models\DaysOffKeyValuePair.cs" />
     <Compile Include="Models\DiseaseModel.cs" />
     <Compile Include="Models\PersonModel.cs" />
+    <Compile Include="Models\Population.cs" />
     <Compile Include="Models\PopulationSettings.cs" />
     <Compile Include="Models\SimulationSettings.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />

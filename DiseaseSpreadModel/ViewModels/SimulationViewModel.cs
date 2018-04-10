@@ -94,7 +94,7 @@ namespace DiseaseSpreadModel.ViewModels
             };
 
             SimulationSettings = new SimulationSettings(1, 100, daysOffDefault);
-            PopulationViewModel = new PopulationViewModel(PopulationSettings, disease);
+            PopulationViewModel = new PopulationViewModel(PopulationSettings, SimulationSettings, disease);
             PopulationViewModel.InitializePopulation();
 
             SettingsCommand = new DelegateCommand(Settings);
@@ -174,7 +174,7 @@ namespace DiseaseSpreadModel.ViewModels
             SimulationTime = 0;
             CurrentDayOfWeek = (WeekDays)(SimulationTime % 7);
 
-            PopulationViewModel = new PopulationViewModel(PopulationSettings, Disease);
+            PopulationViewModel = new PopulationViewModel(PopulationSettings, SimulationSettings, Disease);
             PopulationViewModel.InitializePopulation();
 
             StatisticsViewModel = new StatisticsViewModel();
@@ -211,9 +211,9 @@ namespace DiseaseSpreadModel.ViewModels
                     stream.WriteLine("Simulation Time, Healthy, Infected, Recovered");
                     foreach (var key in statisticsViewModel.Keys)
                     {
-                        int healthy = statisticsViewModel.Healthy.First(w => w.Key == key).Value;
-                        int infected = statisticsViewModel.Infected.First(w => w.Key == key).Value;
-                        int recovered = statisticsViewModel.Recovered.First(w => w.Key == key).Value;
+                        double healthy = statisticsViewModel.Healthy.First(w => w.Key == key).Value;
+                        double infected = statisticsViewModel.Infected.First(w => w.Key == key).Value;
+                        double recovered = statisticsViewModel.Recovered.First(w => w.Key == key).Value;
 
                         stream.WriteLine("{0},{1},{2},{3}", key, healthy, infected, recovered);
                     }

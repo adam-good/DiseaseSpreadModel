@@ -9,26 +9,26 @@ namespace DiseaseSpreadModel.ViewModels
 {
     public class StatisticsViewModel : ViewModelBase
     {
-        public ObservableCollection<KeyValuePair<int, int>> Infected { get; private set; }
-        public ObservableCollection<KeyValuePair<int, int>> Healthy { get; private set; }
-        public ObservableCollection<KeyValuePair<int, int>> Recovered { get; private set; }
+        public ObservableCollection<KeyValuePair<int, double>> Infected { get; private set; }
+        public ObservableCollection<KeyValuePair<int, double>> Healthy { get; private set; }
+        public ObservableCollection<KeyValuePair<int, double>> Recovered { get; private set; }
 
-        private int currentInfected;
-        public int CurrentInfected
+        private double currentInfected;
+        public double CurrentInfected
         {
             get { return currentInfected; }
             set { currentInfected = value; RaisePropertyChangedEvent("CurrentInfected"); }
         }
 
-        private int currentHealthy;
-        public int CurrentHealthy
+        private double currentHealthy;
+        public double CurrentHealthy
         {
             get { return currentHealthy; }
             set { currentHealthy = value; RaisePropertyChangedEvent("CurrentHealthy"); }
         }
 
-        private int currentRecovered;
-        public int CurrentRecovered
+        private double currentRecovered;
+        public double CurrentRecovered
         {
             get { return currentRecovered; }
             set { currentRecovered = value; RaisePropertyChangedEvent("CurrentRecovered"); }
@@ -38,25 +38,25 @@ namespace DiseaseSpreadModel.ViewModels
 
         public StatisticsViewModel()
         {
-            Infected = new ObservableCollection<KeyValuePair<int, int>>();
-            Healthy = new ObservableCollection<KeyValuePair<int, int>>();
-            Recovered = new ObservableCollection<KeyValuePair<int, int>>();
+            Infected = new ObservableCollection<KeyValuePair<int, double>>();
+            Healthy = new ObservableCollection<KeyValuePair<int, double>>();
+            Recovered = new ObservableCollection<KeyValuePair<int, double>>();
 
             Keys = new List<int>();
         }
         
         public void AddTimestepStatistics(int simulationTime, PopulationViewModel populationViewModel)
         {
-            int infectedCount = new List<PersonModel>(populationViewModel.Population).Count(c => c.InfectionState == InfectionStateEnum.Infected);
-            Infected.Add(new KeyValuePair<int,int>(simulationTime, infectedCount));
+            double infectedCount = populationViewModel.GetAverageInfected();
+            Infected.Add(new KeyValuePair<int,double>(simulationTime, infectedCount));
             CurrentInfected = infectedCount;
 
-            int healthyCount = new List<PersonModel>(populationViewModel.Population).Count(c => c.InfectionState == InfectionStateEnum.Healthy);
-            Healthy.Add(new KeyValuePair<int, int>(simulationTime, healthyCount));
+            double healthyCount = populationViewModel.GetAverageHealthy();
+            Healthy.Add(new KeyValuePair<int, double>(simulationTime, healthyCount));
             CurrentHealthy = healthyCount;
 
-            int recoveredCount = new List<PersonModel>(populationViewModel.Population).Count(c => c.InfectionState == InfectionStateEnum.Recovered);
-            Recovered.Add(new KeyValuePair<int, int>(simulationTime, recoveredCount));
+            double recoveredCount = populationViewModel.GetAverageRecovered();
+            Recovered.Add(new KeyValuePair<int, double>(simulationTime, recoveredCount));
             CurrentRecovered = recoveredCount;
 
             Keys.Add(simulationTime);
