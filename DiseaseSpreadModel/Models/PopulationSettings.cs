@@ -18,10 +18,10 @@ namespace DiseaseSpreadModel.Models
         {
             PopulationSize = 100;
             MeanContactsPerDay = 10;
-            StdDevContactsPerDay = 0.01f;
+            StdDevContactsPerDay = 2f;
 
-            MeanContactsPerDayOff = 3;
-            StdDevContactsPerDayOff = 0.3f;
+            MeanContactsPerDayOff = 5;
+            StdDevContactsPerDayOff = 1f;
         }
 
         public PopulationSettings(int populationSize, float meanContactsPerDay, float stdDevContactsPerDay, float meanContactsPerDayOff, float stdDevContactsPerDayOff)

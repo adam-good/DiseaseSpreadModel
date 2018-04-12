@@ -66,9 +66,8 @@
                 <xctk:DecimalUpDown Text="{Binding DiseaseSettings.InfectionRate, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DecimalUpDown>
             </StackPanel>
             <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
-                <Label Content="Avg. Infection Period"></Label>
-
-                <xctk:DecimalUpDown Text="{Binding DiseaseSettings.AverageInfectionPeriod, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DecimalUpDown>
+                <Label Content="Infection Period"></Label>
+                <xctk:DecimalUpDown Text="{Binding DiseaseSettings.InfectionPeriod, UpdateSourceTrigger=PropertyChanged}"  Margin="4,4,4,4" Width="auto"></xctk:DecimalUpDown>
             </StackPanel>
         </StackPanel>
 
