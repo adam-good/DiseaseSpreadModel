@@ -50,10 +50,7 @@ namespace DiseaseSpreadModel.ViewModels
             foreach(var population in PopulationModels)
             {
                 population.UpdatePopulation(isDayOff, Random);
-                lock (updatedPopulations)
-                {
-                    updatedPopulations.Add(population);
-                }
+                updatedPopulations.Add(population);
             };
 
             PopulationModels.Clear();
