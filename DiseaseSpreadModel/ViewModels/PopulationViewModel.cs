@@ -34,7 +34,7 @@ namespace DiseaseSpreadModel.ViewModels
         public void InitializePopulation()
         {
             MathNet.Numerics.Distributions.Normal contactRateGeneration = new MathNet.Numerics.Distributions.Normal(settings.MeanContactsPerDay, settings.StdDevContactsPerDay);
-            MathNet.Numerics.Distributions.Normal contactRateDayOffGeneration = new MathNet.Numerics.Distributions.Normal(settings.MeanContactsPerDayOff, settings.StdDevContactsPerDay);
+            MathNet.Numerics.Distributions.Normal contactRateDayOffGeneration = new MathNet.Numerics.Distributions.Normal(settings.MeanContactsPerDayOff, settings.StdDevContactsPerDayOff);
 
             for (int populationId = 0; populationId < simulationSettings.NumOfRuns; populationId++)
             {

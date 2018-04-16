@@ -59,10 +59,10 @@ namespace DiseaseSpreadModel.Models
         {
 
             List<PersonModel> updatedPopulation = new List<PersonModel>();
-            Parallel.ForEach(Population, (person) =>
+            foreach(var person in Population)
             {
                 person.Recover();
-            });
+            };
 
             Dictionary<int, List<int>> interactionList = new Dictionary<int, List<int>>();
 
@@ -100,7 +100,7 @@ namespace DiseaseSpreadModel.Models
                 }
             }
 
-            Parallel.ForEach(Population, (person) =>
+            foreach(var person in Population)
             {
                 var copyPerson = new PersonModel(person);
 
@@ -113,7 +113,7 @@ namespace DiseaseSpreadModel.Models
                 {
                     updatedPopulation.Add(copyPerson);
                 }
-            });
+            }
 
             Population.Clear();
             Population.AddRange(updatedPopulation);
