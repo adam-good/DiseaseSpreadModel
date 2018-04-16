@@ -79,7 +79,7 @@ namespace DiseaseSpreadModel.ViewModels
         public SimulationViewModel()
         {
             PopulationSettings = new PopulationSettings();
-            Disease = new DiseaseModel("Default", 0.25f, 0.1f, 3.0f, 5.0f); //TODO: fix this, this is literally aids
+            Disease = new DiseaseModel("Default", 0.1f, 5.0f); //TODO: fix this, this is literally aids
 
             ObservableCollection<DaysOffKeyValuePair> daysOffDefault = new ObservableCollection<DaysOffKeyValuePair>()
             {
